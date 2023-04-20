@@ -10,12 +10,8 @@ class Signature
   def call(env)
     # BEGIN
     status, headers, body = @app.call(env)
-    body_sha = Digest::SHA2.new(256).hexdigest body
-    if status == 200
-      [200, headers, "#{body}\n#{body_sha}"]
-    else
-      [status, headers, body]
-    end
+    hash = Digest::SHA256.hexdigest body.first
+    [status, headers, body << hash]
     # END
   end
 end
