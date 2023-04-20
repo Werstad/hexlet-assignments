@@ -8,8 +8,7 @@ class AdminPolicy
   def call(env)
     # BEGIN
     status, headers, body = @app.call(env)
-    request = Rack::Request.new(env
-
+    request = Rack::Request.new(env)
     if request.path.start_with? '/admin'
       [403, headers, '']
     else
