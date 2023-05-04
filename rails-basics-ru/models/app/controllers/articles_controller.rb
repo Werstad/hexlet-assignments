@@ -4,11 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
-  end
-
-  def new
-    @article = Article.new
+    @article = Article.find params[:id]
   end
 
   # def create
