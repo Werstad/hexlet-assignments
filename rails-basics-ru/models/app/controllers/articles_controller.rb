@@ -1,19 +1,9 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.all.order(created_at: :desc)
   end
 
   def show
-    @article = Article.find params[:id]
+    @articles = Article.find(params[:id])
   end
-
-  # def create
-  #   @article = Article.new(title: '...', body: '...')
-
-  #   if @article.save
-  #     redirect_to @article
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
 end
