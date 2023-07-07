@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   # BEGIN
-  root 'home#index'
+  root 'articles#index'
 
   resources :articles, only: %i[index show]
   # END
