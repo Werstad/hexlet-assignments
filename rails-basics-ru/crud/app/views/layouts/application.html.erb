@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+
   </head>
 
   <body>
@@ -17,9 +19,7 @@
     <ul>
       <li><%= link_to 'Home', root_path %></li>
       <%# BEGIN %>
-
       <li><%= link_to 'Tasks', tasks_path %></li>
-
       <%# END %>
     </ul>
     <%= yield %>
