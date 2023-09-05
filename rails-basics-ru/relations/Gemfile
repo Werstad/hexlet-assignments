@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+gem 'annotate'
 
 gem 'jbuilder'
 gem 'puma'
@@ -32,7 +33,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'annotate'
   gem 'bootsnap', '>= 1.4.4', require: false
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
