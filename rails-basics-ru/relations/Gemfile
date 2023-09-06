@@ -2,8 +2,6 @@
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-gem 'annotate'
-
 gem 'jbuilder'
 gem 'puma'
 gem 'rails', '~> 7.0'
@@ -44,5 +42,6 @@ group :test do
   gem 'faker'
   gem 'minitest-power_assert'
 end
+
 gem 'rexml', '~> 3.2', '>= 3.2.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
