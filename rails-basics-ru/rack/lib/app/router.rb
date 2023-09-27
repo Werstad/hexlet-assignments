@@ -4,16 +4,14 @@ require 'rack'
 
 class Router
   def call(env)
-    # BEGIN
-    req = Rack::Request.new(env)
-    case req.path_info
+    request = Rack::Request.new(env)
+    case request.path
     when '/'
-      [200, { 'Content-Type' => 'text/html' }, 'Hello, World!']
+      [200, {}, ['Hello, World!']]
     when '/about'
-      [200, { 'Content-Type' => 'text/html' }, 'About page']
+      [200, {}, ['About page']]
     else
-      [404, { 'Content-Type' => 'text/html' }, '404 Not Found']
+      [404, {}, ['404 Not Found']]
     end
-    # END
   end
 end

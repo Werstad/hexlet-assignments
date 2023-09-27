@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
-class ExecutionTimer
+require 'rack'
+
+class ExecutionTimer # :nodoc:
   def initialize(app)
     @app = app
   end
 
   def call(env)
-    before = Time.now.to_f
-    status, headers, prev_body = @app.call(env)
-    after = Time.now.to_f
-    diff = (after - before) * 1_000_000
-    log_message = "App took #{diff.to_i} microseconds."
-    next_body = prev_body.concat(['</br>', log_message])
+    time_start = (Time.new.to_f * 1_000_000).to_i
 
-    [status, headers, next_body]
+    status, headers, body = @app.call(env)
+
+    time_stop = (Time.new.to_f * 1_000_000).to_i
+    puts "Request processing time: #{time_stop - time_start} µs"
+    [status, headers, body]
   end
 end
