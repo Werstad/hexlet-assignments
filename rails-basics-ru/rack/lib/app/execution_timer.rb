@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
-class Timer
+class ExecutionTimer
   def initialize(app)
     @app = app
   end
 
   def call(env)
-    status, headers, body = @app.call(env)
-    runtime = headers['X-Runtime']
-    [status, headers, "#{body}\n#{runtime}"]
+    before = Time.now.to_f
+    status, headers, prev_body = @app.call(env)
+    after = Time.now.to_f
+    diff = (after - before) * 1_000_000
+    log_message = "App took #{diff.to_i} microseconds."
+    next_body = prev_body.concat(['</br>', log_message])
+
+    [status, headers, next_body]
   end
 end
